@@ -5,4 +5,5 @@ export interface Project {
   description: string;
   readMoreUrl: string;
   logoType?: 'lambda' | 'code' | 'terminal' | 'waves';
+  tags?: string[];
 }
