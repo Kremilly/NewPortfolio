@@ -104,6 +104,7 @@ const Index = () => {
                 title={project.name}
                 tags={project.tags}
                 stars={project.stars}
+                forks={project.forks}
                 logoType="terminal"
                 description={project.description}
                 readMoreUrl={project.url}

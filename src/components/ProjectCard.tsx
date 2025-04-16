@@ -7,11 +7,12 @@ interface ProjectCardProps {
   logoType?: 'lambda' | 'code' | 'terminal' | 'waves' | 'external';
   tags?: string[];
   stars?: number,
+  forks?: number;
   description: string;
   readMoreUrl?: string;
 }
 
-export function ProjectCard({ title, logoType, tags, stars, description, readMoreUrl }: ProjectCardProps) {
+export function ProjectCard({ title, logoType, tags, stars, forks, description, readMoreUrl }: ProjectCardProps) {
   const renderIcon = () => {
     switch (logoType) {
       case 'lambda':
@@ -45,6 +46,7 @@ export function ProjectCard({ title, logoType, tags, stars, description, readMor
             {stars && (
               <div className="relative inline-block mt-2 mb-2">
                 <span className="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full mr-2">{stars} stars</span>
+                <span className="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full mr-2">{forks} forks</span>
               </div>
             )}
 
