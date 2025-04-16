@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Avatar } from "@/components/Avatar";
 import { ProjectCard } from "@/components/ProjectCard";
-import { Code, Waves, Terminal } from "lucide-react";
+import { Code, Waves, Terminal, Github, AtSign } from "lucide-react";
 import { fetchProjects } from "@/services/projectService";
 import { Project } from "@/types/project";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -70,6 +70,18 @@ const Index = () => {
             <p className="text-muted-foreground leading-relaxed">
               My name is <span className="text-primary font-medium">Kremilly</span>, and I am a software engineer with a passion for building innovative solutions. I have experience in various programming languages and frameworks, and I love tackling complex challenges. I am always eager to learn new technologies and improve my skills.
             </p>
+
+            <div className="flex items-center gap-4 mt-4">
+              <a
+                href="https://github.com/Kremilly"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-primary hover:text-primary/80"
+              >
+                <Github className="w-4 h-4" />
+                GitHub
+              </a>
+            </div>
           </div>
         </div>
 
