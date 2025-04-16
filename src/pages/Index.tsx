@@ -164,7 +164,7 @@ const Index = () => {
             I have experience with a wide range of technologies and tools. Here are some of the skills I have acquired over the years:
           </p>
 
-          <div className="flex flex-wrap gap-2 justify-center">
+          <div className="flex flex-wrap gap-2">
             <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full">Rust</span>
             <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full">Python</span>
             <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full">Go</span>
