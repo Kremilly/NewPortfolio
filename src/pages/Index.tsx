@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Avatar } from "@/components/Avatar";
 import { ProjectCard } from "@/components/ProjectCard";
-import { CompoundLink } from "@/components/CompoundLink";
 import { Code, Waves, Terminal } from "lucide-react";
 import { fetchProjects } from "@/services/projectService";
 import { Project } from "@/types/project";
@@ -120,54 +119,6 @@ const Index = () => {
           </div>
         </div>
         
-        {/* Meet the other compounds section */}
-        <div className="relative">
-          <div className="absolute -z-10 bottom-0 left-0 w-full h-full opacity-10">
-            <svg
-              viewBox="0 0 200 200"
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-full h-full"
-            >
-              <path
-                fill="hsl(var(--primary))"
-                d="M41.3,-69.7C53.6,-63.3,63.8,-52.3,70.1,-39.3C76.4,-26.3,78.8,-11.3,77.2,3C75.7,17.3,70.2,30.9,61.7,42.3C53.2,53.7,41.6,62.9,28.7,67.8C15.8,72.8,1.6,73.5,-12.4,71.3C-26.5,69.2,-40.3,64.2,-51.6,55.4C-63,46.6,-71.8,34,-75.8,19.8C-79.9,5.7,-79.1,-10,-73.7,-23.1C-68.3,-36.3,-58.2,-46.8,-46.1,-53.1C-34,-59.5,-19.9,-61.7,-4.9,-64.3C10.1,-66.9,29,-76,41.3,-69.7Z"
-                transform="translate(100 100)"
-              />
-            </svg>
-          </div>
-          
-          <h2 className="section-title">
-            Meet the other compounds! <span className="text-primary ml-2">🧪</span>
-          </h2>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <CompoundLink 
-              name="aripiprazole" 
-              href="#aripiprazole" 
-              icon="🧠"
-              className="backdrop-blur-sm bg-secondary/30 hover:bg-secondary/50"
-            />
-            <CompoundLink 
-              name="atomoxetine" 
-              href="#atomoxetine" 
-              icon="⚛️"
-              className="backdrop-blur-sm bg-secondary/30 hover:bg-secondary/50"
-            />
-            <CompoundLink 
-              name="oestradiol" 
-              href="#oestradiol" 
-              icon="🌈"
-              className="backdrop-blur-sm bg-secondary/30 hover:bg-secondary/50"
-            />
-            <CompoundLink 
-              name="paroxetine" 
-              href="#paroxetine" 
-              icon="🧬"
-              className="backdrop-blur-sm bg-secondary/30 hover:bg-secondary/50"
-            />
-          </div>
-        </div>
-        
         {/* Footer */}
         <footer className="mt-20 pt-6 border-t border-muted text-center text-muted-foreground text-sm">
           <p>&copy; {new Date().getFullYear()} Gabrielle • Software Engineer • Compiler Enthusiast</p>
@@ -184,3 +135,4 @@ const Index = () => {
 };
 
 export default Index;
+
