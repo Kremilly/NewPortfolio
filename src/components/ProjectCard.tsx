@@ -4,12 +4,13 @@ import { Lambda } from "./Lambda";
 
 interface ProjectCardProps {
   title: string;
-  logoType?: 'lambda' | 'code' | 'terminal' | 'waves';
+  logoType?: 'lambda' | 'code' | 'terminal' | 'waves' | 'external';
+  tags?: string[];
   description: string;
   readMoreUrl?: string;
 }
 
-export function ProjectCard({ title, logoType, description, readMoreUrl }: ProjectCardProps) {
+export function ProjectCard({ title, logoType, tags, description, readMoreUrl }: ProjectCardProps) {
   const renderIcon = () => {
     switch (logoType) {
       case 'lambda':
@@ -20,6 +21,8 @@ export function ProjectCard({ title, logoType, description, readMoreUrl }: Proje
         return <Terminal className="text-primary" />;
       case 'waves':
         return <Waves className="text-primary" />;
+      case 'external':
+        return <ExternalLink className="text-primary" />;
       default:
         return <Lambda className="text-primary" />;
     }
@@ -40,13 +43,23 @@ export function ProjectCard({ title, logoType, description, readMoreUrl }: Proje
             <p className="text-sm text-muted-foreground mt-2 whitespace-pre-line">{description}</p>
           </div>
         </div>
-        
+
+        {tags && (
+          <div className="flex flex-wrap gap-2 mt-3 justify-end">
+            {tags.map((tag, index) => (
+              <span key={index} className="text-xs text-primary bg-primary/10 px-2 py-1 rounded-full">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+
         {readMoreUrl && (
           <a 
             href={readMoreUrl} 
             className="link-with-arrow mt-3 text-sm group-hover:text-primary transition-colors"
           >
-            Read more
+            View on GitHub
           </a>
         )}
       </div>

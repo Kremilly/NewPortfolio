@@ -53,25 +53,26 @@ const Index = () => {
             </svg>
           </div>
           <Avatar 
-            src="/lovable-uploads/179624b5-c391-414e-a999-973b8cf14274.png" 
+            src="https://avatars.githubusercontent.com/u/24691979?v=4" 
             alt="Profile picture" 
-            className="w-60 h-60 border-4 border-secondary/30"
+            className="w-60 h-60 border-4 border-secondary/30 border-opacity-50 rounded-full mb-4"
           />
           <div className="space-y-4">
             <h1 className="text-3xl font-bold flex items-center gap-2">
-              Hi, I&apos;m Gabi! <span className="text-2xl animate-wave">👋</span>
+              Hi, I&apos;m Kremilly! <span className="text-2xl animate-wave">👋</span>
             </h1>
+
             <div className="relative inline-block mb-2">
-              <span className="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full">
+              <span className="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full mr-2">
                 Software Engineer
               </span>
+              <span className="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full">
+                Low Level Engineer
+              </span>
             </div>
+
             <p className="text-muted-foreground leading-relaxed">
-              My name is Gabrielle and I am a 19-year-old software engineer with a 
-              passion for functional programming and the Kotlin programming language.
-              In my free time, I enjoy playing Minecraft and working on projects
-              related to compilers. I am excited to share my skills and experience
-              with others in the field.
+              My name is <span className="text-primary font-medium">Kremilly</span>, and I am a software engineer with a passion for building innovative solutions. I have experience in various programming languages and frameworks, and I love tackling complex challenges. I am always eager to learn new technologies and improve my skills.
             </p>
           </div>
         </div>
@@ -83,13 +84,7 @@ const Index = () => {
           </h2>
           
           <p className="mb-6 text-muted-foreground">
-            I&apos;m passionate about compilers, type theory, the Minecraft protocol,
-            and <span className="text-primary font-medium">Hindley Milner!</span> These topics perfectly blend my love for
-            programming and problem-solving. Compilers transform code into machine
-            code, while Hindley Milner adds elegance and safety to the process.
-            Tinkering with the Minecraft protocol to optimize and customize
-            gameplay is a joy. I love pushing the boundaries of programming and
-            seeking new challenges!
+            I'm a backend developer with experience building high‑performance, scalable, and secure systems using <span className="text-primary font-medium">Rust</span>, <span className="text-primary font-medium">Python</span>, and <span className="text-primary font-medium">Go</span>. I have a strong understanding of concepts such as concurrency, performance optimization, and robust API design. I have experience with containerization technologies like Docker. I am passionate about writing clean, maintainable code and following best practices in software development.
           </p>
 
           <div className="space-y-6">
@@ -110,25 +105,51 @@ const Index = () => {
             {projects && projects.map((project) => (
               <ProjectCard 
                 key={project.id}
-                title={project.title}
-                logoType={project.logoType}
+                title={project.name}
+                tags={project.tags}
+                logoType="terminal"
                 description={project.description}
-                readMoreUrl={project.readMoreUrl}
+                readMoreUrl={project.url}
               />
             ))}
           </div>
         </div>
-        
-        {/* Footer */}
-        <footer className="mt-20 pt-6 border-t border-muted text-center text-muted-foreground text-sm">
-          <p>&copy; {new Date().getFullYear()} Gabrielle • Software Engineer • Compiler Enthusiast</p>
-          <div className="mt-2 text-xs opacity-60">
-            <span className="inline-block px-2">Kotlin</span>•
-            <span className="inline-block px-2">Compilers</span>•
-            <span className="inline-block px-2">Type Theory</span>•
-            <span className="inline-block px-2">Minecraft</span>
+
+        { /* Blog section */}
+        <div className="mb-16 relative">
+          <h2 className="section-title">
+            My blog <span className="text-primary ml-2">📝</span>
+          </h2>
+          <p className="mb-6 text-muted-foreground">
+            I love sharing my knowledge and experiences through writing. Check out my blog for articles on software development, technology, and more.
+          </p>
+          <div className="space-y-6">
+            {isLoading && (
+              <>
+                <ProjectSkeleton />
+                <ProjectSkeleton />
+                <ProjectSkeleton />
+              </>
+            )}
+            
+            {error && (
+              <div className="p-4 bg-red-900/20 border border-red-900 rounded text-red-400">
+                Error loading projects. Please try again later.
+              </div>
+            )}
+            
+            {projects && projects.map((project) => (
+              <ProjectCard 
+                key={project.id}
+                title={project.name}
+                tags={project.tags}
+                logoType="terminal"
+                description={project.description}
+                readMoreUrl={project.url}
+              />
+            ))}
           </div>
-        </footer>
+        </div>
       </div>
     </div>
   );
