@@ -112,42 +112,6 @@ const Index = () => {
             ))}
           </div>
         </div>
-
-        { /* Blog section */}
-        <div className="mb-16 relative">
-          <h2 className="section-title">
-            My blog <span className="text-primary ml-2">📝</span>
-          </h2>
-          <p className="mb-6 text-muted-foreground">
-            I love sharing my knowledge and experiences through writing. Check out my blog for articles on software development, technology, and more.
-          </p>
-          <div className="space-y-6">
-            {isLoading && (
-              <>
-                <ProjectSkeleton />
-                <ProjectSkeleton />
-                <ProjectSkeleton />
-              </>
-            )}
-            
-            {error && (
-              <div className="p-4 bg-red-900/20 border border-red-900 rounded text-red-400">
-                Error loading projects. Please try again later.
-              </div>
-            )}
-            
-            {projects && projects.map((project) => (
-              <ProjectCard 
-                key={project.id}
-                title={project.name}
-                tags={project.tags}
-                logoType="terminal"
-                description={project.description}
-                readMoreUrl={project.url}
-              />
-            ))}
-          </div>
-        </div>
       </div>
     </div>
   );

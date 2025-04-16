@@ -43,7 +43,7 @@ export function ProjectCard({ title, logoType, tags, stars, forks, description, 
           <div className="flex-1">
             <h3 className="text-xl font-bold text-white">{title}</h3>
 
-            {stars && (
+            {stars > 0 && (
               <div className="relative inline-block mt-2 mb-2">
                 <span className="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full mr-2">{stars} stars</span>
                 <span className="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full mr-2">{forks} forks</span>
@@ -69,7 +69,7 @@ export function ProjectCard({ title, logoType, tags, stars, forks, description, 
             href={readMoreUrl} 
             className="link-with-arrow mt-3 text-sm group-hover:text-primary transition-colors"
           >
-            View on GitHub {stars}
+            View on GitHub
           </a>
         )}
       </div>
