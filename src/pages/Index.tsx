@@ -76,7 +76,7 @@ const Index = () => {
                 href="https://github.com/Kremilly"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-primary hover:text-primary/80"
+                className="flex items-center gap-2 text-primary font-medium hover:text-primary/80"
               >
                 <Github className="w-4 h-4" />
                 GitHub
