@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Avatar } from "@/components/Avatar";
 import { ProjectCard } from "@/components/ProjectCard";
-import { Code, Waves, Terminal, Github, AtSign } from "lucide-react";
+import { Code, Waves, Terminal, Github, AtSign, Linkedin } from "lucide-react";
 import { fetchProjects } from "@/services/projectService";
 import { Project } from "@/types/project";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -54,7 +54,7 @@ const Index = () => {
           </div>
 
           <Avatar 
-            src="https://avatars.githubusercontent.com/u/24691979?v=4" 
+            src="https://media.licdn.com/dms/image/v2/D5603AQHLe-UilCnyxw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1723222126602?e=1750291200&v=beta&t=9CwfiU9EscYaEOs_G_iRRNGTOGLJdBOyQzQOBJfVZSU" 
             alt="Profile picture" 
             className="w-60 h-60 border-4 border-secondary/30 border-opacity-50 rounded-full mb-4"
           />
@@ -69,7 +69,7 @@ const Index = () => {
             </div>
 
             <p className="text-muted-foreground leading-relaxed">
-              I am a <span className="text-primary font-medium">software engineer</span> with a passion for building innovative solutions. I have experience in various programming languages and frameworks, and I love tackling complex challenges. I am always eager to learn new technologies and improve my skills.
+              My name is <span className="text-primary font-medium">César</span>, but known as <span className="text-primary font-medium">Kremilly</span>. I am a <span className="text-primary font-medium">software engineer</span> with a passion for building innovative solutions. I have experience in various programming languages and frameworks, and I love tackling complex challenges. I am always eager to learn new technologies and improve my skills.
             </p>
 
             <div className="flex items-center gap-4 mt-4">
@@ -81,6 +81,15 @@ const Index = () => {
               >
                 <Github className="w-4 h-4" />
                 GitHub
+              </a>
+              <a
+                href="https://www.linkedin.com/in/thecesar"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-primary font-medium hover:text-primary/80"
+              >
+                <Linkedin className="w-4 h-4" />
+                LinkedIn
               </a>
             </div>
           </div>
