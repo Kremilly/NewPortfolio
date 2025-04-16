@@ -68,7 +68,7 @@ const Index = () => {
             </div>
 
             <p className="text-muted-foreground leading-relaxed">
-              My name is <span className="text-primary font-medium">Kremilly</span>, and I am a software engineer with a passion for building innovative solutions. I have experience in various programming languages and frameworks, and I love tackling complex challenges. I am always eager to learn new technologies and improve my skills.
+              I am a <span className="text-primary font-medium">software engineer</span> with a passion for building innovative solutions. I have experience in various programming languages and frameworks, and I love tackling complex challenges. I am always eager to learn new technologies and improve my skills.
             </p>
 
             <div className="flex items-center gap-4 mt-4">
@@ -92,7 +92,7 @@ const Index = () => {
           </h2>
           
           <p className="mb-6 text-muted-foreground">
-            I'm a backend developer with experience building high‑performance, scalable, and secure systems using <span className="text-primary font-medium">Rust</span>, <span className="text-primary font-medium">Python</span>, and <span className="text-primary font-medium">Go</span>. I have a strong understanding of concepts such as concurrency, performance optimization, and robust API design. I have experience with containerization technologies like Docker. I am passionate about writing clean, maintainable code and following best practices in software development.
+            I'm a backend developer with experience building high‑performance, scalable, and secure systems using <span className="text-primary font-medium">Rust</span>, <span className="text-primary font-medium">Python</span>, and <span className="text-primary font-medium">Go</span>. I have a strong understanding of concepts such as concurrency, performance optimization, and robust API design. I have experience with containerization technologies like <span className="text-primary font-medium">Docker</span>. I am passionate about writing clean, maintainable code and following best practices in software development.
           </p>
 
           <div className="space-y-6">
