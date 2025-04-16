@@ -52,6 +52,7 @@ const Index = () => {
               ></path>
             </svg>
           </div>
+
           <Avatar 
             src="https://avatars.githubusercontent.com/u/24691979?v=4" 
             alt="Profile picture" 
@@ -63,8 +64,8 @@ const Index = () => {
             </h1>
 
             <div className="relative inline-block mb-2">
-              <span className="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full mr-2">Software Engineer</span>
-              <span className="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full">Low Level Engineer</span>
+              <span className="text-sm bg-primary/20 text-primary px-3 py-1 rounded-full mr-2">Software Engineer</span>
+              <span className="text-sm bg-primary/20 text-primary px-3 py-1 rounded-full">Low Level Engineer</span>
             </div>
 
             <p className="text-muted-foreground leading-relaxed">
@@ -124,10 +125,47 @@ const Index = () => {
             ))}
           </div>
         </div>
+
+        { /* Skills Section */ }
+        <div className="mb-16 relative">
+          <h2 className="section-title">
+            Skills <span className="text-primary ml-2">🛠️</span>
+          </h2>
+
+          <p className="mb-6 text-muted-foreground">
+            I have experience with a wide range of technologies and tools. Here are some of the skills I have acquired over the years:
+          </p>
+
+          <div className="flex flex-wrap gap-2 justify-center">
+            <span className="text-sm bg-primary/20 text-primary px-3 py-1 rounded-full">Rust</span>
+            <span className="text-sm bg-primary/20 text-primary px-3 py-1 rounded-full">Python</span>
+            <span className="text-sm bg-primary/20 text-primary px-3 py-1 rounded-full">Go</span>
+            <span className="text-sm bg-primary/20 text-primary px-3 py-1 rounded-full">PHP</span>
+            <span className="text-sm bg-primary/20 text-primary px-3 py-1 rounded-full">MYSQL</span>
+            <span className="text-sm bg-primary/20 text-primary px-3 py-1 rounded-full">PostgreSQL</span>
+            <span className="text-sm bg-primary/20 text-primary px-3 py-1 rounded-full">JavaScript</span>
+            <span className="text-sm bg-primary/20 text-primary px-3 py-1 rounded-full">TypeScript</span>
+            <span className="text-sm bg-primary/20 text-primary px-3 py-1 rounded-full">Docker</span>
+            <span className="text-sm bg-primary/20 text-primary px-3 py-1 rounded-full">Redis</span>
+            <span className="text-sm bg-primary/20 text-primary px-3 py-1 rounded-full">Vue.js</span>
+            <span className="text-sm bg-primary/20 text-primary px-3 py-1 rounded-full">React</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Decorative elements at the bottom */}
+      <div className="absolute bottom-0 left-0 w-full h-32 bg-primary/10 rounded-tl-full blur-3xl" />
+      <div className="absolute bottom-0 right-0 w-full h-32 bg-secondary/10 rounded-tr-full blur-3xl" />
+      
+      {/* Footer Section */}
+      <div className="bg-secondary/10 py-8 text-center text-muted-foreground relative z-10">
+        <p className="text-sm">
+          Made with <span className="text-primary">❤️</span> by Kremilly
+        </p>
+        <p className="text-sm mt-2">© Kremilly. All rights reserved.</p>
       </div>
     </div>
   );
 };
 
 export default Index;
-
