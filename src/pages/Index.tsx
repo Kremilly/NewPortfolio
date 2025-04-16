@@ -1,11 +1,32 @@
 
+import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { Avatar } from "@/components/Avatar";
 import { ProjectCard } from "@/components/ProjectCard";
 import { CompoundLink } from "@/components/CompoundLink";
-import { Lambda } from "@/components/Lambda";
 import { Code, Waves, Terminal } from "lucide-react";
+import { fetchProjects } from "@/services/projectService";
+import { Project } from "@/types/project";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const Index = () => {
+  const { data: projects, isLoading, error } = useQuery({
+    queryKey: ['projects'],
+    queryFn: fetchProjects
+  });
+
+  // Componente para mostrar durante o carregamento
+  const ProjectSkeleton = () => (
+    <div className="flex items-start gap-4 mb-6">
+      <Skeleton className="h-10 w-10 rounded" />
+      <div className="space-y-2 flex-1">
+        <Skeleton className="h-5 w-40" />
+        <Skeleton className="h-4 w-full" />
+        <Skeleton className="h-4 w-full" />
+      </div>
+    </div>
+  );
+
   return (
     <div className="min-h-screen bg-black text-white">
       <div className="container mx-auto max-w-4xl px-4 py-16">
@@ -47,26 +68,29 @@ const Index = () => {
           </p>
 
           <div className="space-y-6">
-            <ProjectCard 
-              title="Plank"
-              logo={<Lambda className="text-primary" />}
-              description="A functional programming language with a focus on simplicity and ease of use. Plank is a statically typed language with a syntax similar to Kotlin, and a compiler written in Kotlin..."
-              readMoreUrl="#plank"
-            />
+            {isLoading && (
+              <>
+                <ProjectSkeleton />
+                <ProjectSkeleton />
+                <ProjectSkeleton />
+              </>
+            )}
             
-            <ProjectCard 
-              title="Trazodone"
-              logo={<Lambda className="text-primary" />}
-              description="A LLVM backend for JVM that runs just-in-time compilation, and abstract the codegen into multiple steps to be easy to generate LLVM, Rust, or any target, and has a built-in evaluator..."
-              readMoreUrl="#trazodone"
-            />
+            {error && (
+              <div className="p-4 bg-red-900/20 border border-red-900 rounded text-red-400">
+                Error loading projects. Please try again later.
+              </div>
+            )}
             
-            <ProjectCard 
-              title="Asena"
-              logo={<Lambda className="text-primary" />}
-              description="Incremental/single-pass based compiler,the API can be either used for Single-Pass Compilingand for building LSP, orthings that would need incremental pipelines. Its a study project of mine for studying incremental compilers and package-managers..."
-              readMoreUrl="#asena"
-            />
+            {projects && projects.map((project) => (
+              <ProjectCard 
+                key={project.id}
+                title={project.title}
+                logoType={project.logoType}
+                description={project.description}
+                readMoreUrl={project.readMoreUrl}
+              />
+            ))}
           </div>
         </div>
         

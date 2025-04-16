@@ -1,50 +1,39 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800&family=Fira+Code:wght@300;400;500;600;700&display=swap');
-
 @layer base {
   :root {
-    /* In dark mode by default */
-    --background: 240 10% 3.9%;
-    --foreground: 240 5% 90%;
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
 
-    --card: 240 10% 3.9%;
-    --card-foreground: 240 5% 90%;
+    --card: 0 0% 4%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 240 5% 90%;
+    --popover: 0 0% 4%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 48 96% 62%;  /* Yellow for primary */
-    --primary-foreground: 240 5.9% 10%;
+    --primary: 272 91% 73%;
+    --primary-foreground: 210 40% 98%;
 
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 240 5% 90%;
+    --secondary: 216 34% 17%;
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 60%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 48 96% 62%;  
-    --accent-foreground: 240 5.9% 10%;
+    --accent: 216 34% 17%;
+    --accent-foreground: 210 40% 98%;
 
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 272 91% 73%;
 
     --radius: 0.5rem;
-
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
@@ -52,85 +41,52 @@
   * {
     @apply border-border;
   }
-
   body {
-    @apply bg-black text-foreground font-mono;
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
 
 @layer components {
+  .section-title {
+    @apply text-2xl font-bold mb-6 flex items-center;
+  }
+  
+  .profile-section {
+    @apply flex flex-col md:flex-row gap-8 mb-16;
+  }
+  
+  .project-card {
+    @apply p-4 rounded-lg bg-card hover:bg-card/80 transition-colors border border-muted;
+  }
+  
   .link-with-arrow {
-    @apply inline-flex items-center text-primary font-medium hover:underline;
+    @apply inline-flex items-center gap-1 text-primary hover:underline transition-all;
   }
   
-  .link-with-arrow::after {
+  .link-with-arrow:after {
     content: "→";
-    @apply ml-1 transition-transform duration-300 transform;
+    @apply ml-1 transition-transform duration-200;
   }
   
-  .link-with-arrow:hover::after {
-    @apply transform translate-x-1;
-  }
-  
-  @keyframes wave {
-    0% { transform: rotate(0deg); }
-    10% { transform: rotate(14deg); }
-    20% { transform: rotate(-8deg); }
-    30% { transform: rotate(14deg); }
-    40% { transform: rotate(-4deg); }
-    50% { transform: rotate(10deg); }
-    60% { transform: rotate(0deg); }
-    100% { transform: rotate(0deg); }
+  .link-with-arrow:hover:after {
+    @apply translate-x-1;
   }
   
   .animate-wave {
-    display: inline-block;
     animation: wave 2.5s infinite;
     transform-origin: 70% 70%;
-  }
-
-  .terminal-code {
-    @apply bg-code-bg text-code-text p-4 rounded-md font-mono;
-  }
-
-  .code-block {
-    @apply bg-code-bg text-code-text p-4 rounded-md font-mono;
-  }
-
-  .profile-section {
-    @apply flex flex-col md:flex-row items-start gap-6 mb-12;
-  }
-
-  .section-title {
-    @apply text-2xl font-semibold mb-6 text-white flex items-center;
-  }
-
-  .section-title::before {
-    content: ">";
-    @apply text-primary mr-2;
-  }
-
-  .project-card {
-    @apply border border-muted p-5 rounded-lg mb-6;
-  }
-
-  .typewriter {
-    @apply relative;
-  }
-
-  .typewriter::after {
-    content: "|";
-    @apply absolute bottom-0 ml-1 animate-cursor-blink;
-  }
-
-  .cursor-pointer {
-    @apply after:content-['_'] after:inline after:w-2 after:h-4 after:bg-primary after:animate-cursor-blink;
+    display: inline-block;
   }
 }
 
-html, body, #root {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  background-color: #000000;
+@keyframes wave {
+  0% { transform: rotate(0deg); }
+  10% { transform: rotate(14deg); }
+  20% { transform: rotate(-8deg); }
+  30% { transform: rotate(14deg); }
+  40% { transform: rotate(-4deg); }
+  50% { transform: rotate(10deg); }
+  60% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
 }
