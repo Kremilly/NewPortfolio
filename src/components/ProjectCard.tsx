@@ -6,11 +6,12 @@ interface ProjectCardProps {
   title: string;
   logoType?: 'lambda' | 'code' | 'terminal' | 'waves' | 'external';
   tags?: string[];
+  stars?: number,
   description: string;
   readMoreUrl?: string;
 }
 
-export function ProjectCard({ title, logoType, tags, description, readMoreUrl }: ProjectCardProps) {
+export function ProjectCard({ title, logoType, tags, stars, description, readMoreUrl }: ProjectCardProps) {
   const renderIcon = () => {
     switch (logoType) {
       case 'lambda':
@@ -40,6 +41,13 @@ export function ProjectCard({ title, logoType, tags, description, readMoreUrl }:
           </div>
           <div className="flex-1">
             <h3 className="text-xl font-bold text-white">{title}</h3>
+
+            {stars && (
+              <div className="relative inline-block mt-2 mb-2">
+                <span className="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full mr-2">{stars} stars</span>
+              </div>
+            )}
+
             <p className="text-sm text-muted-foreground mt-2 whitespace-pre-line">{description}</p>
           </div>
         </div>
@@ -59,7 +67,7 @@ export function ProjectCard({ title, logoType, tags, description, readMoreUrl }:
             href={readMoreUrl} 
             className="link-with-arrow mt-3 text-sm group-hover:text-primary transition-colors"
           >
-            View on GitHub
+            View on GitHub {stars}
           </a>
         )}
       </div>

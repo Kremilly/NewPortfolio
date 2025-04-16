@@ -1,5 +1,7 @@
 
 export interface Project {
+  forks: number;
+  stars: number;
   url: string;
   name: string;
   id: string;

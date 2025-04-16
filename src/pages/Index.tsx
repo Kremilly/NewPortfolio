@@ -63,12 +63,8 @@ const Index = () => {
             </h1>
 
             <div className="relative inline-block mb-2">
-              <span className="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full mr-2">
-                Software Engineer
-              </span>
-              <span className="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full">
-                Low Level Engineer
-              </span>
+              <span className="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full mr-2">Software Engineer</span>
+              <span className="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full">Low Level Engineer</span>
             </div>
 
             <p className="text-muted-foreground leading-relaxed">
@@ -107,6 +103,7 @@ const Index = () => {
                 key={project.id}
                 title={project.name}
                 tags={project.tags}
+                stars={project.stars}
                 logoType="terminal"
                 description={project.description}
                 readMoreUrl={project.url}
