@@ -4,6 +4,7 @@ export interface Project {
   forks: number;
   stars: number;
   url: string;
+  home: string;
   name: string;
   id: string;
   title: string;

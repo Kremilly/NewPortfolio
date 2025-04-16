@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Avatar } from "@/components/Avatar";
 import { ProjectCard } from "@/components/ProjectCard";
-import { Code, Waves, Terminal, Github, Linkedin } from "lucide-react";
+import { Code, Waves, Terminal, Github, Linkedin, Home } from "lucide-react";
 import { fetchProjects } from "@/services/projectService";
 import { Project } from "@/types/project";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -144,8 +144,7 @@ const Index = () => {
                     languages={project.languages}
                     stars={project.stars}
                     forks={project.forks}
-                    commits={project.commits}
-                    issues={project.issues}
+                    home={project.home}
                     logoType="terminal"
                     description={project.description}
                     readMoreUrl={project.url}

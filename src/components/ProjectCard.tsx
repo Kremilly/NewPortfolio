@@ -1,5 +1,5 @@
 
-import { ExternalLink, Code, Waves, Terminal } from "lucide-react";
+import { ExternalLink, Code, Waves, Terminal, Star } from "lucide-react";
 import { Lambda } from "./Lambda";
 
 interface ProjectCardProps {
@@ -9,13 +9,12 @@ interface ProjectCardProps {
   languages?: string[];
   stars?: number,
   forks?: number;
-  commits?: number;
-  issues?: number;
   description: string;
   readMoreUrl?: string;
+  home: string;
 }
 
-export function ProjectCard({ title, logoType, tags, languages, stars, forks, commits, issues, description, readMoreUrl }: ProjectCardProps) {
+export function ProjectCard({ title, logoType, tags, languages, stars, forks, description, readMoreUrl, home }: ProjectCardProps) {
   const renderIcon = () => {
     switch (logoType) {
       case 'lambda':
@@ -47,10 +46,10 @@ export function ProjectCard({ title, logoType, tags, languages, stars, forks, co
             <h3 className="text-xl font-bold text-white">{title}</h3>
 
             <div className="relative inline-block mt-2 mb-2">
-              <span className="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full mr-2">{stars} stars</span>
+              <span className="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full mr-2">
+                {stars} stars
+              </span>
               <span className="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full mr-2">{forks} forks</span>
-              <span className="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full mr-2">{commits} commits</span>
-              <span className="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full mr-2">{issues} issues</span>
 
               <span className="text-xs mr-2"> </span>
 
@@ -83,6 +82,15 @@ export function ProjectCard({ title, logoType, tags, languages, stars, forks, co
             View on GitHub
           </a>
         )}
+
+        {home && (
+            <a 
+              href={home} 
+              className="ml-3 link-with-arrow mt-3 text-sm group-hover:text-primary transition-colors"
+            >
+              Homepage
+            </a>
+          )}
       </div>
     </div>
   );
