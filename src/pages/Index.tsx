@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Avatar } from "@/components/Avatar";
 import { ProjectCard } from "@/components/ProjectCard";
-import { Code, Waves, Terminal, Github, AtSign, Linkedin } from "lucide-react";
+import { Code, Waves, Terminal, Github, Linkedin } from "lucide-react";
 import { fetchProjects } from "@/services/projectService";
 import { Project } from "@/types/project";
 import { Skeleton } from "@/components/ui/skeleton";
