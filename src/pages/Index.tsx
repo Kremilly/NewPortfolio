@@ -26,6 +26,8 @@ const Index = () => {
     </div>
   );
 
+  const [searchQuery, setSearchQuery] = useState<string>('');
+
   return (
     <div className="min-h-screen bg-black text-white relative overflow-hidden">
       {/* Background decorative elements */}
@@ -113,25 +115,42 @@ const Index = () => {
                 <ProjectSkeleton />
               </>
             )}
-            
+
             {error && (
               <div className="p-4 bg-red-900/20 border border-red-900 rounded text-red-400">
                 Error loading projects. Please try again later.
               </div>
             )}
-            
-            {projects && projects.map((project) => (
-              <ProjectCard 
-                key={project.id}
-                title={project.name}
-                tags={project.tags}
-                stars={project.stars}
-                forks={project.forks}
-                logoType="terminal"
-                description={project.description}
-                readMoreUrl={project.url}
+
+            <div className="relative mb-6">
+              <input
+                type="text"
+                placeholder="Search project..."
+                className="w-full p-3 bg-secondary/10 border border-primary/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition duration-300"
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
-            ))}
+            </div>
+
+            {projects &&
+              projects
+                .filter((project) =>
+                  project.name.toLowerCase().includes(searchQuery.toLowerCase())
+                )
+                .map((project) => (
+                  <ProjectCard
+                    key={project.id}
+                    title={project.name}
+                    tags={project.tags}
+                    languages={project.languages}
+                    stars={project.stars}
+                    forks={project.forks}
+                    commits={project.commits}
+                    issues={project.issues}
+                    logoType="terminal"
+                    description={project.description}
+                    readMoreUrl={project.url}
+                  />
+                ))}
           </div>
         </div>
 
@@ -146,18 +165,18 @@ const Index = () => {
           </p>
 
           <div className="flex flex-wrap gap-2 justify-center">
-            <span className="text-sm bg-primary/20 text-primary px-3 py-1 rounded-full">Rust</span>
-            <span className="text-sm bg-primary/20 text-primary px-3 py-1 rounded-full">Python</span>
-            <span className="text-sm bg-primary/20 text-primary px-3 py-1 rounded-full">Go</span>
-            <span className="text-sm bg-primary/20 text-primary px-3 py-1 rounded-full">PHP</span>
-            <span className="text-sm bg-primary/20 text-primary px-3 py-1 rounded-full">MYSQL</span>
-            <span className="text-sm bg-primary/20 text-primary px-3 py-1 rounded-full">PostgreSQL</span>
-            <span className="text-sm bg-primary/20 text-primary px-3 py-1 rounded-full">JavaScript</span>
-            <span className="text-sm bg-primary/20 text-primary px-3 py-1 rounded-full">TypeScript</span>
-            <span className="text-sm bg-primary/20 text-primary px-3 py-1 rounded-full">Docker</span>
-            <span className="text-sm bg-primary/20 text-primary px-3 py-1 rounded-full">Redis</span>
-            <span className="text-sm bg-primary/20 text-primary px-3 py-1 rounded-full">Vue.js</span>
-            <span className="text-sm bg-primary/20 text-primary px-3 py-1 rounded-full">React</span>
+            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full">Rust</span>
+            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full">Python</span>
+            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full">Go</span>
+            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full">PHP</span>
+            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full">MYSQL</span>
+            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full">PostgreSQL</span>
+            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full">JavaScript</span>
+            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full">TypeScript</span>
+            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full">Docker</span>
+            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full">Redis</span>
+            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full">Vue.js</span>
+            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full">React</span>
           </div>
         </div>
       </div>
@@ -169,7 +188,7 @@ const Index = () => {
       {/* Footer Section */}
       <div className="bg-secondary/10 py-8 text-center text-muted-foreground relative z-10">
         <p className="text-sm">
-          Made with <span className="text-primary">❤️</span> by Kremilly
+          Made with <span className="text-primary animate-pulse">❤️</span> by Kremilly
         </p>
         <p className="text-sm mt-2">© Kremilly. All rights reserved.</p>
       </div>

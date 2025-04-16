@@ -6,13 +6,16 @@ interface ProjectCardProps {
   title: string;
   logoType?: 'lambda' | 'code' | 'terminal' | 'waves' | 'external';
   tags?: string[];
+  languages?: string[];
   stars?: number,
   forks?: number;
+  commits?: number;
+  issues?: number;
   description: string;
   readMoreUrl?: string;
 }
 
-export function ProjectCard({ title, logoType, tags, stars, forks, description, readMoreUrl }: ProjectCardProps) {
+export function ProjectCard({ title, logoType, tags, languages, stars, forks, commits, issues, description, readMoreUrl }: ProjectCardProps) {
   const renderIcon = () => {
     switch (logoType) {
       case 'lambda':
@@ -43,12 +46,20 @@ export function ProjectCard({ title, logoType, tags, stars, forks, description, 
           <div className="flex-1">
             <h3 className="text-xl font-bold text-white">{title}</h3>
 
-            {stars > 0 && (
-              <div className="relative inline-block mt-2 mb-2">
-                <span className="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full mr-2">{stars} stars</span>
-                <span className="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full mr-2">{forks} forks</span>
-              </div>
-            )}
+            <div className="relative inline-block mt-2 mb-2">
+              <span className="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full mr-2">{stars} stars</span>
+              <span className="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full mr-2">{forks} forks</span>
+              <span className="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full mr-2">{commits} commits</span>
+              <span className="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full mr-2">{issues} issues</span>
+
+              <span className="text-xs mr-2"> </span>
+
+              {languages && languages.map((language, index) => (
+                <span key={index} className="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full mr-2">
+                  {language}
+                </span>
+              ))}
+            </div>
 
             <p className="text-sm text-muted-foreground mt-2 whitespace-pre-line">{description}</p>
           </div>
