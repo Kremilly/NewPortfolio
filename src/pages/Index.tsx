@@ -56,13 +56,13 @@ const Index = () => {
           </div>
 
           <Avatar 
-            src="https://media.licdn.com/dms/image/v2/D5603AQHLe-UilCnyxw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1723222126602?e=1750291200&v=beta&t=9CwfiU9EscYaEOs_G_iRRNGTOGLJdBOyQzQOBJfVZSU" 
+            src="https://avatars.githubusercontent.com/u/24691979?v=4" 
             alt="Profile picture" 
             className="w-60 h-60 border-4 border-secondary/30 border-opacity-50 rounded-full mb-4"
           />
           <div className="space-y-4">
             <h1 className="text-3xl font-bold flex items-center gap-2">
-              Hi, I&apos;m Kremilly! <span className="text-2xl animate-wave">👋</span>
+              Hi, I&apos;m <span className="text-primary">Kremilly</span>! <span className="text-2xl animate-wave">👋</span>
             </h1>
 
             <div className="relative inline-block mb-2">
@@ -71,7 +71,7 @@ const Index = () => {
             </div>
 
             <p className="text-muted-foreground leading-relaxed">
-              My name is <span className="text-primary font-medium">César</span>, but known as <span className="text-primary font-medium">Kremilly</span>. I am a <span className="text-primary font-medium">software engineer</span> with a passion for building innovative solutions. I have experience in various programming languages and frameworks, and I love tackling complex challenges. I am always eager to learn new technologies and improve my skills.
+              I am a <span className="text-primary font-medium">software engineer</span> with a passion for building innovative solutions. I have experience in various programming languages and frameworks, and I love tackling complex challenges. I am always eager to learn new technologies and improve my skills.
             </p>
 
             <div className="flex items-center gap-4 mt-4">
