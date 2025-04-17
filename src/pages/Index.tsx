@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Avatar } from "@/components/Avatar";
 import { ProjectCard } from "@/components/ProjectCard";
-import { Code, Waves, Terminal, Github, Linkedin, Home } from "lucide-react";
+import { Code, Waves, Terminal, Github } from "lucide-react";
 import { fetchProjects } from "@/services/projectService";
 import { Project } from "@/types/project";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -83,15 +83,6 @@ const Index = () => {
               >
                 <Github className="w-4 h-4" />
                 GitHub
-              </a>
-              <a
-                href="https://www.linkedin.com/in/thecesar"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-primary font-medium hover:text-primary/80"
-              >
-                <Linkedin className="w-4 h-4" />
-                LinkedIn
               </a>
             </div>
           </div>
