@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Avatar } from "@/components/Avatar";
@@ -7,12 +6,46 @@ import { Code, Waves, Terminal, Github, Rss, BookText } from "lucide-react";
 import { fetchProjects } from "@/services/projectService";
 import { Project } from "@/types/project";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useSmoothScroll } from "@/hooks/use-mobile";
 
 const Index = () => {
-  const { data: projects, isLoading, error } = useQuery({
+  const { 
+    data: projects, 
+    isLoading, 
+    error, 
+    refetch,
+    isFetching,
+    isStale
+  } = useQuery({
     queryKey: ['projects'],
-    queryFn: fetchProjects
+    queryFn: fetchProjects,
+    staleTime: 1000 * 60 * 30, // 30 minutos - dados considerados frescos
+    gcTime: 1000 * 60 * 60 * 24, // 24 horas - tempo de garbage collection
+    refetchOnWindowFocus: false, // Não refetch quando a janela ganha foco
+    refetchOnReconnect: true, // Refetch quando reconecta
+    retry: 3, // Tentar 3 vezes em caso de erro
+    retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000), // Backoff exponencial
   });
+
+  // Usar o hook de scroll suave
+  useSmoothScroll();
+
+  // Efeito de parallax sutil
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrolled = window.pageYOffset;
+      const parallaxElements = document.querySelectorAll('.parallax');
+      
+      parallaxElements.forEach((element) => {
+        const speed = element.getAttribute('data-speed') || '0.5';
+        const yPos = -(scrolled * parseFloat(speed));
+        (element as HTMLElement).style.transform = `translateY(${yPos}px)`;
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Componente para mostrar durante o carregamento
   const ProjectSkeleton = () => (
@@ -30,11 +63,11 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-black text-white relative overflow-hidden">
-      {/* Background decorative elements */}
+      {/* Background decorative elements with parallax */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 opacity-30">
-        <div className="absolute top-20 left-20 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-40 right-10 w-80 h-80 bg-secondary/10 rounded-full blur-3xl" />
-        <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+        <div className="parallax absolute top-20 left-20 w-64 h-64 bg-primary/10 rounded-full blur-3xl" data-speed="0.3" />
+        <div className="parallax absolute bottom-40 right-10 w-80 h-80 bg-secondary/10 rounded-full blur-3xl" data-speed="0.2" />
+        <div className="parallax absolute -bottom-20 -left-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl" data-speed="0.4" />
       </div>
       
       <div className="container mx-auto max-w-4xl px-4 py-16 relative z-10">
@@ -79,7 +112,7 @@ const Index = () => {
                 href="https://github.com/Kremilly"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-primary font-medium hover:text-primary/80"
+                className="flex items-center gap-2 text-primary font-medium hover:text-primary/80 transition-colors"
               >
                 <Github className="w-4 h-4" />
                 GitHub
@@ -88,7 +121,7 @@ const Index = () => {
                 href="https://blog.kremilly.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-primary font-medium hover:text-primary/80"
+                className="flex items-center gap-2 text-primary font-medium hover:text-primary/80 transition-colors"
               >
                 <Rss className="w-4 h-4" />
                 Blog
@@ -97,7 +130,7 @@ const Index = () => {
                 href="https://docs.kremilly.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-primary font-medium hover:text-primary/80"
+                className="flex items-center gap-2 text-primary font-medium hover:text-primary/80 transition-colors"
               >
                 <BookText className="w-4 h-4" />
                 Docs
@@ -145,7 +178,7 @@ const Index = () => {
                 .filter((project) =>
                   project.name.toLowerCase().includes(searchQuery.toLowerCase())
                 )
-                .map((project) => (
+                .map((project, index) => (
                   <ProjectCard
                     key={project.id}
                     title={project.name}
@@ -157,6 +190,7 @@ const Index = () => {
                     logoType="terminal"
                     description={project.description}
                     readMoreUrl={project.url}
+                    index={index}
                   />
                 ))}
           </div>
@@ -173,25 +207,25 @@ const Index = () => {
           </p>
 
           <div className="flex flex-wrap gap-2">
-            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full">Rust</span>
-            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full">Python</span>
-            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full">Go</span>
-            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full">PHP</span>
-            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full">MYSQL</span>
-            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full">PostgreSQL</span>
-            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full">JavaScript</span>
-            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full">TypeScript</span>
-            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full">Docker</span>
-            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full">Redis</span>
-            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full">Vue.js</span>
-            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full">React</span>
+            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full hover:bg-primary/30 transition-colors">Rust</span>
+            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full hover:bg-primary/30 transition-colors">Python</span>
+            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full hover:bg-primary/30 transition-colors">Go</span>
+            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full hover:bg-primary/30 transition-colors">PHP</span>
+            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full hover:bg-primary/30 transition-colors">MYSQL</span>
+            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full hover:bg-primary/30 transition-colors">PostgreSQL</span>
+            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full hover:bg-primary/30 transition-colors">JavaScript</span>
+            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full hover:bg-primary/30 transition-colors">TypeScript</span>
+            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full hover:bg-primary/30 transition-colors">Docker</span>
+            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full hover:bg-primary/30 transition-colors">Redis</span>
+            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full hover:bg-primary/30 transition-colors">Vue.js</span>
+            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full hover:bg-primary/30 transition-colors">React</span>
           </div>
         </div>
       </div>
 
-      {/* Decorative elements at the bottom */}
-      <div className="absolute bottom-0 left-0 w-full h-32 bg-primary/10 rounded-tl-full blur-3xl" />
-      <div className="absolute bottom-0 right-0 w-full h-32 bg-secondary/10 rounded-tr-full blur-3xl" />
+      {/* Decorative elements at the bottom with parallax */}
+      <div className="parallax absolute bottom-0 left-0 w-full h-32 bg-primary/10 rounded-tl-full blur-3xl" data-speed="0.1" />
+      <div className="parallax absolute bottom-0 right-0 w-full h-32 bg-secondary/10 rounded-tr-full blur-3xl" data-speed="0.15" />
       
       {/* Footer Section */}
       <div className="bg-secondary/10 py-8 text-center text-muted-foreground relative z-10">

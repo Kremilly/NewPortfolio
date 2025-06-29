@@ -1,6 +1,6 @@
-
 import { ExternalLink, Code, Waves, Terminal, Star } from "lucide-react";
 import { Lambda } from "./Lambda";
+import { useEffect, useRef, useState } from "react";
 
 interface ProjectCardProps {
   title: string;
@@ -12,9 +12,40 @@ interface ProjectCardProps {
   description: string;
   readMoreUrl?: string;
   home: string;
+  index?: number;
 }
 
-export function ProjectCard({ title, logoType, tags, languages, stars, forks, description, readMoreUrl, home }: ProjectCardProps) {
+export function ProjectCard({ title, logoType, tags, languages, stars, forks, description, readMoreUrl, home, index = 0 }: ProjectCardProps) {
+  const [isVisible, setIsVisible] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            setIsVisible(true);
+          }, index * 150);
+          observer.unobserve(entry.target);
+        }
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      }
+    );
+
+    if (cardRef.current) {
+      observer.observe(cardRef.current);
+    }
+
+    return () => {
+      if (cardRef.current) {
+        observer.unobserve(cardRef.current);
+      }
+    };
+  }, [index]);
+
   const renderIcon = () => {
     switch (logoType) {
       case 'lambda':
@@ -33,7 +64,14 @@ export function ProjectCard({ title, logoType, tags, languages, stars, forks, de
   };
 
   return (
-    <div className="project-card group relative overflow-hidden">
+    <div 
+      ref={cardRef}
+      className={`project-card group relative overflow-hidden transition-all duration-700 ease-out ${
+        isVisible 
+          ? 'opacity-100 translate-y-0' 
+          : 'opacity-0 translate-y-8'
+      }`}
+    >
       <div className="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-primary/10 blur-2xl" />
       <div className="absolute -left-12 -bottom-12 h-32 w-32 rounded-full bg-primary/5 blur-2xl" />
       
