@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Avatar } from "@/components/Avatar";
 import { ProjectCard } from "@/components/ProjectCard";
-import { Code, Waves, Terminal, Github, Rss, BookText } from "lucide-react";
+import { Code, Waves, Terminal, Github, Rss, BookText, Linkedin } from "lucide-react";
 import { fetchProjects } from "@/services/projectService";
 import { Project } from "@/types/project";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -135,6 +135,15 @@ const Index = () => {
               >
                 <Rss className="w-4 h-4" />
                 Blog
+              </a>
+              <a
+                href="https://www.linkedin.com/in/cesarcorreadasilva/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/30 text-primary font-medium hover:border-primary/60 hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 hover:scale-105"
+              >
+                <Linkedin className="w-4 h-4" />
+                Linkedin
               </a>
               <a
                 href="https://docs.kremilly.com"
