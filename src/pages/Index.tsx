@@ -62,13 +62,20 @@ const Index = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
 
   return (
-    <div className="min-h-screen bg-black text-white relative overflow-hidden">
+    <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
       {/* Background decorative elements with parallax */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 opacity-30">
-        <div className="parallax absolute top-20 left-20 w-64 h-64 bg-primary/10 rounded-full blur-3xl" data-speed="0.3" />
-        <div className="parallax absolute bottom-40 right-10 w-80 h-80 bg-secondary/10 rounded-full blur-3xl" data-speed="0.2" />
-        <div className="parallax absolute -bottom-20 -left-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl" data-speed="0.4" />
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+        <div className="parallax absolute top-20 left-20 w-96 h-96 bg-primary/20 rounded-full blur-[120px]" data-speed="0.3" />
+        <div className="parallax absolute top-1/3 right-20 w-[500px] h-[500px] bg-accent/15 rounded-full blur-[100px]" data-speed="0.2" />
+        <div className="parallax absolute bottom-40 left-1/4 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[130px]" data-speed="0.4" />
+        <div className="parallax absolute -bottom-20 -right-20 w-96 h-96 bg-accent/20 rounded-full blur-[100px]" data-speed="0.15" />
       </div>
+      
+      {/* Grid overlay */}
+      <div className="absolute inset-0 z-0 opacity-[0.02]" style={{
+        backgroundImage: `linear-gradient(hsl(var(--primary)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)`,
+        backgroundSize: '50px 50px'
+      }} />
       
       <div className="container mx-auto max-w-4xl px-4 py-16 relative z-10">
         {/* Header/Profile Section */}
@@ -88,31 +95,34 @@ const Index = () => {
             </svg>
           </div>
 
-          <Avatar 
-            src="https://avatars.githubusercontent.com/u/24691979?v=4" 
-            alt="Profile picture" 
-            className="w-60 h-60 border-4 border-secondary/30 border-opacity-50 rounded-full mb-4"
-          />
+          <div className="relative group">
+            <div className="absolute inset-0 bg-primary/30 rounded-full blur-2xl group-hover:blur-3xl transition-all duration-500" />
+            <Avatar 
+              src="https://avatars.githubusercontent.com/u/24691979?v=4" 
+              alt="Profile picture" 
+              className="w-60 h-60 border-4 border-primary/30 rounded-full mb-4 relative z-10 transition-all duration-500 group-hover:scale-105 group-hover:border-primary/50"
+            />
+          </div>
           <div className="space-y-4">
-            <h1 className="text-3xl font-bold flex items-center gap-2">
-              Hi, I&apos;m <span className="text-primary">Kremilly</span>! <span className="text-2xl animate-wave">👋</span>
+            <h1 className="text-4xl md:text-5xl font-bold flex items-center gap-3 mb-4">
+              Hi, I&apos;m <span className="bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">Kremilly</span>! <span className="text-3xl animate-wave">👋</span>
             </h1>
 
-            <div className="relative inline-block mb-2">
-              <span className="text-sm bg-primary/20 text-primary px-3 py-1 rounded-full mr-2">Software Engineer</span>
-              <span className="text-sm bg-primary/20 text-primary px-3 py-1 rounded-full">Low Level Engineer</span>
+            <div className="flex flex-wrap gap-2 mb-6">
+              <span className="text-sm bg-gradient-to-r from-primary/20 to-primary/10 text-primary px-4 py-2 rounded-full border border-primary/30 font-medium">Software Engineer</span>
+              <span className="text-sm bg-gradient-to-r from-primary/20 to-primary/10 text-primary px-4 py-2 rounded-full border border-primary/30 font-medium">Low Level Engineer</span>
             </div>
 
             <p className="text-muted-foreground leading-relaxed">
               I am a <span className="text-primary font-medium">software engineer</span> with a passion for building innovative solutions. I have experience in various programming languages and frameworks, and I love tackling complex challenges. I am always eager to learn new technologies and improve my skills.
             </p>
 
-            <div className="flex items-center gap-4 mt-4">
+            <div className="flex flex-wrap items-center gap-3 mt-6">
               <a
                 href="https://github.com/Kremilly"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-primary font-medium hover:text-primary/80 transition-colors"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/30 text-primary font-medium hover:border-primary/60 hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 hover:scale-105"
               >
                 <Github className="w-4 h-4" />
                 GitHub
@@ -121,7 +131,7 @@ const Index = () => {
                 href="https://blog.kremilly.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-primary font-medium hover:text-primary/80 transition-colors"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/30 text-primary font-medium hover:border-primary/60 hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 hover:scale-105"
               >
                 <Rss className="w-4 h-4" />
                 Blog
@@ -130,7 +140,7 @@ const Index = () => {
                 href="https://docs.kremilly.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-primary font-medium hover:text-primary/80 transition-colors"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/30 text-primary font-medium hover:border-primary/60 hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 hover:scale-105"
               >
                 <BookText className="w-4 h-4" />
                 Docs
@@ -164,13 +174,14 @@ const Index = () => {
               </div>
             )}
 
-            <div className="relative mb-6">
+            <div className="relative mb-8">
               <input
                 type="text"
-                placeholder="Search project..."
-                className="w-full p-3 bg-secondary/10 border border-primary/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition duration-300"
+                placeholder="Search projects..."
+                className="w-full p-4 pl-12 bg-card/50 backdrop-blur-sm border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300 hover:border-primary/50"
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
+              <Terminal className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
             </div>
 
             {projects &&
@@ -206,34 +217,47 @@ const Index = () => {
             I have experience with a wide range of technologies and tools. Here are some of the skills I have acquired over the years:
           </p>
 
-          <div className="flex flex-wrap gap-2">
-            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full hover:bg-primary/30 transition-colors">Rust</span>
-            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full hover:bg-primary/30 transition-colors">Python</span>
-            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full hover:bg-primary/30 transition-colors">Go</span>
-            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full hover:bg-primary/30 transition-colors">PHP</span>
-            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full hover:bg-primary/30 transition-colors">MYSQL</span>
-            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full hover:bg-primary/30 transition-colors">PostgreSQL</span>
-            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full hover:bg-primary/30 transition-colors">JavaScript</span>
-            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full hover:bg-primary/30 transition-colors">TypeScript</span>
-            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full hover:bg-primary/30 transition-colors">Docker</span>
-            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full hover:bg-primary/30 transition-colors">Redis</span>
-            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full hover:bg-primary/30 transition-colors">Vue.js</span>
-            <span className="text-sm bg-primary/20 text-primary px-3 py-1 cursor-pointer rounded-full hover:bg-primary/30 transition-colors">React</span>
+          <div className="flex flex-wrap gap-3">
+            <span className="skill-tag text-primary">Rust</span>
+            <span className="skill-tag text-primary">Python</span>
+            <span className="skill-tag text-primary">Go</span>
+            <span className="skill-tag text-primary">PHP</span>
+            <span className="skill-tag text-primary">MySQL</span>
+            <span className="skill-tag text-primary">PostgreSQL</span>
+            <span className="skill-tag text-primary">JavaScript</span>
+            <span className="skill-tag text-primary">TypeScript</span>
+            <span className="skill-tag text-primary">Docker</span>
+            <span className="skill-tag text-primary">Redis</span>
+            <span className="skill-tag text-primary">Vue.js</span>
+            <span className="skill-tag text-primary">React</span>
           </div>
         </div>
       </div>
 
-      {/* Decorative elements at the bottom with parallax */}
-      <div className="parallax absolute bottom-0 left-0 w-full h-32 bg-primary/10 rounded-tl-full blur-3xl" data-speed="0.1" />
-      <div className="parallax absolute bottom-0 right-0 w-full h-32 bg-secondary/10 rounded-tr-full blur-3xl" data-speed="0.15" />
-      
       {/* Footer Section */}
-      <div className="bg-secondary/10 py-8 text-center text-muted-foreground relative z-10">
-        <p className="text-sm">
-          Made with <span className="text-primary animate-pulse">❤️</span> by Kremilly
-        </p>
-        <p className="text-sm mt-2">© Kremilly. All rights reserved.</p>
-      </div>
+      <footer className="relative z-10 mt-20 border-t border-border/50">
+        <div className="container mx-auto max-w-4xl px-4 py-12">
+          <div className="text-center space-y-4">
+            <div className="flex justify-center gap-6 mb-6">
+              <a href="https://github.com/Kremilly" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors duration-300">
+                <Github className="w-5 h-5" />
+              </a>
+              <a href="https://blog.kremilly.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors duration-300">
+                <Rss className="w-5 h-5" />
+              </a>
+              <a href="https://docs.kremilly.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors duration-300">
+                <BookText className="w-5 h-5" />
+              </a>
+            </div>
+            <p className="text-sm text-muted-foreground">
+              Made with <span className="text-primary inline-block animate-pulse">❤️</span> by Kremilly
+            </p>
+            <p className="text-xs text-muted-foreground/70">
+              © {new Date().getFullYear()} Kremilly. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };

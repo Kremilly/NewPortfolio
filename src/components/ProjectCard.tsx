@@ -72,27 +72,28 @@ export function ProjectCard({ title, logoType, tags, languages, stars, forks, de
           : 'opacity-0 translate-y-8'
       }`}
     >
-      <div className="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-primary/10 blur-2xl" />
-      <div className="absolute -left-12 -bottom-12 h-32 w-32 rounded-full bg-primary/5 blur-2xl" />
+      <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-primary/20 blur-3xl group-hover:bg-primary/30 transition-all duration-500" />
+      <div className="absolute -left-16 -bottom-16 h-40 w-40 rounded-full bg-accent/10 blur-3xl group-hover:bg-accent/20 transition-all duration-500" />
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       
       <div className="relative z-10">
-        <div className="flex items-start gap-4 mb-3">
-          <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-secondary rounded-lg border border-primary/20">
+        <div className="flex items-start gap-5 mb-4">
+          <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-gradient-to-br from-primary/20 to-primary/5 rounded-xl border border-primary/30 group-hover:border-primary/60 group-hover:shadow-lg group-hover:shadow-primary/20 transition-all duration-300">
             {renderIcon()}
           </div>
           <div className="flex-1">
-            <h3 className="text-xl font-bold text-white">{title}</h3>
+            <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">{title}</h3>
 
-            <div className="relative inline-block mt-2 mb-2">
-              <span className="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full mr-2">
-                {stars} stars
+            <div className="flex flex-wrap gap-2 mt-3 mb-3">
+              <span className="text-xs bg-gradient-to-r from-primary/20 to-primary/10 text-primary px-3 py-1.5 rounded-full border border-primary/20 font-medium flex items-center gap-1">
+                <Star className="w-3 h-3" /> {stars}
               </span>
-              <span className="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full mr-2">{forks} forks</span>
-
-              <span className="text-xs mr-2"> </span>
+              <span className="text-xs bg-gradient-to-r from-primary/20 to-primary/10 text-primary px-3 py-1.5 rounded-full border border-primary/20 font-medium">
+                {forks} forks
+              </span>
 
               {languages && languages.map((language, index) => (
-                <span key={index} className="text-xs bg-primary/20 text-primary px-3 py-1 rounded-full mr-2">
+                <span key={index} className="text-xs bg-gradient-to-r from-accent/20 to-accent/10 text-accent px-3 py-1.5 rounded-full border border-accent/20 font-medium">
                   {language}
                 </span>
               ))}
@@ -103,32 +104,34 @@ export function ProjectCard({ title, logoType, tags, languages, stars, forks, de
         </div>
 
         {tags && (
-          <div className="flex flex-wrap gap-2 mt-3 justify-end">
+          <div className="flex flex-wrap gap-2 mt-4 justify-end">
             {tags.map((tag, index) => (
-              <span key={index} className="text-xs text-primary bg-primary/10 px-2 py-1 rounded-full">
+              <span key={index} className="text-xs text-primary bg-gradient-to-r from-primary/15 to-primary/5 px-3 py-1.5 rounded-full border border-primary/20 font-medium hover:border-primary/40 transition-colors duration-300">
                 {tag}
               </span>
             ))}
           </div>
         )}
 
-        {readMoreUrl && (
-          <a 
-            href={readMoreUrl} 
-            className="link-with-arrow mt-3 text-sm group-hover:text-primary transition-colors"
-          >
-            View on GitHub
-          </a>
-        )}
+        <div className="flex flex-wrap gap-4 mt-5 pt-4 border-t border-border/50">
+          {readMoreUrl && (
+            <a 
+              href={readMoreUrl} 
+              className="link-with-arrow text-sm"
+            >
+              View on GitHub
+            </a>
+          )}
 
-        {home && (
+          {home && (
             <a 
               href={home} 
-              className="ml-3 link-with-arrow mt-3 text-sm group-hover:text-primary transition-colors"
+              className="link-with-arrow text-sm"
             >
               Homepage
             </a>
           )}
+        </div>
       </div>
     </div>
   );
