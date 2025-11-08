@@ -254,6 +254,9 @@ const Index = () => {
               <a href="https://blog.kremilly.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors duration-300">
                 <Rss className="w-5 h-5" />
               </a>
+              <a href="https://www.linkedin.com/in/cesarcorreadasilva/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors duration-300">
+                <Linkedin className="w-5 h-5" />
+              </a>
               <a href="https://docs.kremilly.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors duration-300">
                 <BookText className="w-5 h-5" />
               </a>
